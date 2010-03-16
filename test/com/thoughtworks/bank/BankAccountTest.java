@@ -1,10 +1,123 @@
 package com.thoughtworks.bank;
 import org.junit.Assert;
 import org.junit.Test;
+import src.com.thoughtworks.bank.Account;
+import src.com.thoughtworks.bank.Account.AccountOverdrawnException;
+import src.com.thoughtworks.bank.Bank;
+import src.com.thoughtworks.bank.Bank.BadCreditException;
+import src.com.thoughtworks.bank.Customer;
+import src.com.thoughtworks.bank.AuditLog;
+
+import java.math.BigDecimal;
 public class BankAccountTest {
-  @Test
-  public void booleanSample()
-  {
-    Assert.assertTrue(true);
-  }
+
+        @Test
+        public void CreatingCustomerMatchesFirstName()
+        {
+            Customer customer = new Customer(1,"Milton", "Waddams", 720);
+            Assert.assertEquals("Milton",customer.firstName);
+        }
+
+        @Test
+        public void CreatingCustomerMatchesLastName()
+        {
+            Customer customer = new Customer(1,"Milton", "Waddams", 720);
+            Assert.assertEquals("Waddams",customer.lastName);
+        }
+
+        @Test
+        public void CreatingCustomerMatchesFicoScore()
+        {
+            Customer customer = new Customer(1,"Milton", "Waddams", 720);
+            Assert.assertEquals(720,customer.ficoScore);
+        }
+
+
+        @Test
+        public void GoodFicoScoreCreditCheck()
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Assert.assertEquals(true, bank.CheckCredit(customer.ficoScore));
+        }
+
+        @Test
+        public void BadFicoScoreCreditCheck()
+        {
+            Customer customer = new Customer(1, "Peter", "Gibbons", 600);
+            Bank bank = new Bank("Initech Bank", 680);
+            Assert.assertEquals(false, bank.CheckCredit(customer.ficoScore));
+        }
+
+       @Test
+        public void OpeningAccountWithBadCreditThrowsException() throws BadCreditException
+        {
+            Customer customer = new Customer(1, "Peter", "Gibbons", 600);
+            Bank bank = new Bank("Initech Bank", 680);
+            try{
+                bank.OpenAccount(customer);
+                Assert.fail("Should have Bad Credit Exception");
+            }
+            catch(BadCreditException expected){}
+        }
+
+        @Test
+        public void OpeningAccountWithGoodCreditResultsInAccount() throws BadCreditException
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Account newAccount = bank.OpenAccount(customer);
+            Assert.assertEquals(customer, newAccount.holder);
+        }
+
+
+        @Test
+        public void DepositCashIntoAccountWorks() throws BadCreditException
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Account account = bank.OpenAccount(customer);
+            account.Deposit(new BigDecimal(42));
+            account.Deposit(new BigDecimal(37));
+            Assert.assertEquals(new BigDecimal(79), account.Balance);
+        }
+
+        @Test
+        public void WithdrawCashFromAccountWorks() throws BadCreditException, AccountOverdrawnException
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Account account = bank.OpenAccount(customer);
+            AuditLog auditlog = new AuditLog();
+            account.Deposit(new BigDecimal(50));
+            account.Withdraw(new BigDecimal(10), auditlog);
+            Assert.assertEquals(new BigDecimal(40), account.Balance);
+        }
+
+        @Test
+        public void OverdrawingAccountThrowsException() throws BadCreditException, AccountOverdrawnException
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Account account = bank.OpenAccount(customer);
+            AuditLog auditlog = new AuditLog();
+            try{
+                account.Withdraw(new BigDecimal(10), auditlog);
+                Assert.fail("Should have Account Overdrawn Exception");
+            }
+            catch(AccountOverdrawnException expected){}
+        }
+
+        @Test
+        public void WithdrawingOver10KCreatesAnAuditEntry() throws BadCreditException, AccountOverdrawnException
+        {
+            Customer customer = new Customer(1, "Milton", "Waddams", 720);
+            Bank bank = new Bank("Initech Bank", 680);
+            Account account = bank.OpenAccount(customer);
+            AuditLog auditlog = new AuditLog();
+            account.Deposit(new BigDecimal(10000));
+            account.Withdraw(new BigDecimal(10000), auditlog);
+            Assert.assertEquals(1, auditlog.size());
+
+        } 
 }
