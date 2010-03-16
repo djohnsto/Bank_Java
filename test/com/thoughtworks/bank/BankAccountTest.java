@@ -1,14 +1,18 @@
 package com.thoughtworks.bank;
+
 import org.junit.Assert;
 import org.junit.Test;
 import src.com.thoughtworks.bank.Account;
 import src.com.thoughtworks.bank.Account.AccountOverdrawnException;
+import src.com.thoughtworks.bank.Audit;
 import src.com.thoughtworks.bank.Bank;
 import src.com.thoughtworks.bank.Bank.BadCreditException;
 import src.com.thoughtworks.bank.Customer;
-import src.com.thoughtworks.bank.AuditLog;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccountTest {
 
         @Test
@@ -88,7 +92,7 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            AuditLog auditlog = new AuditLog();
+            List<Audit> auditlog = new ArrayList();
             account.Deposit(new BigDecimal(50));
             account.Withdraw(new BigDecimal(10), auditlog);
             Assert.assertEquals(new BigDecimal(40), account.Balance);
@@ -100,7 +104,7 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            AuditLog auditlog = new AuditLog();
+            List<Audit> auditlog = new ArrayList();
             try{
                 account.Withdraw(new BigDecimal(10), auditlog);
                 Assert.fail("Should have Account Overdrawn Exception");
@@ -114,7 +118,7 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            AuditLog auditlog = new AuditLog();
+            List<Audit> auditlog = new ArrayList();
             account.Deposit(new BigDecimal(10000));
             account.Withdraw(new BigDecimal(10000), auditlog);
             Assert.assertEquals(1, auditlog.size());

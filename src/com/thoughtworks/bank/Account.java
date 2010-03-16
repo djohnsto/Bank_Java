@@ -1,5 +1,8 @@
 package src.com.thoughtworks.bank;
+
 import java.math.BigDecimal;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ThoughtWorks
@@ -41,7 +44,7 @@ public class Account {
             Balance=Balance.add(amount);
         }
 
-        public void Withdraw(BigDecimal amount, AuditLog auditlog) throws AccountOverdrawnException
+        public void Withdraw(BigDecimal amount, List<Audit> auditlog) throws AccountOverdrawnException
         {
             Balance=Balance.subtract(amount);
             if(Balance.intValue() < 0)
