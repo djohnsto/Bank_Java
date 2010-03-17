@@ -1,8 +1,8 @@
 package src.com.thoughtworks.bankcontroller;
 
-import src.com.thoughtworks.RepositoryInMemory.AccountRepositoryInMemory;
-import src.com.thoughtworks.RepositoryInMemory.AuditLogRepositoryInMemory;
-import src.com.thoughtworks.RepositoryInMemory.CustomerRepositoryInMemory;
+import src.com.thoughtworks.RepositoryInDatabase.AccountRepositoryInDatabase;
+import src.com.thoughtworks.RepositoryInDatabase.AuditLogRepositoryInDatabase;
+import src.com.thoughtworks.RepositoryInDatabase.CustomerRepositoryInDatabase;
 import src.com.thoughtworks.bank.Account;
 import src.com.thoughtworks.bank.Audit;
 import src.com.thoughtworks.bank.Bank;
@@ -22,14 +22,13 @@ import java.util.List;
  */
 public class BankAccountController {
 
-    public CustomerRepositoryInMemory CustomerRepository;
-    public AccountRepositoryInMemory AccountRepository;
-    public AuditLogRepositoryInMemory AuditLogRepository;
+    public CustomerRepositoryInDatabase CustomerRepository;
+    public AccountRepositoryInDatabase AccountRepository;
+    public AuditLogRepositoryInDatabase AuditLogRepository;
 
-    public void Create(String firstName, String lastName, int ficoScore)
+    public void Create(String firstName, String lastName, int ficoScore) throws Exception
     {
         Bank bank = new Bank("BankName", 720);
-        //var auditLog = new AuditLog(bank);
         boolean creditPassed = bank.CheckCredit(ficoScore);
         if (creditPassed)
         {
@@ -56,7 +55,9 @@ public class BankAccountController {
         Account account = AccountRepository.GetAccountByCustomer(customer);
         account.Withdraw(amount, auditLog);
         AccountRepository.UpdateAccountBalance(account);
-        AuditLogRepository.WriteEntries(auditLog);
+        if(auditLog.size()!=0){
+            AuditLogRepository.WriteEntries(auditLog);
+        }
     }
     
 }

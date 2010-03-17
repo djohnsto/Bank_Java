@@ -46,16 +46,6 @@ public class Bank {
             return account;
         }
 
-        /*private void AttachAllAccountsToLargeWithdrawAlert(Action<decimal, Customer> newSubscriber)
-        {
-            accounts.ForEach(a => a.LargeWithdrawAlert += newSubscriber);
-        }
-
-        public event Action<decimal, Customer> LargeWithdrawAlert
-        {
-            add { AttachAllAccountsToLargeWithdrawAlert(value); }
-            remove { throw new NotImplementedException(); }
-        }  */
     public class BadCreditException extends Exception{}
 }
 

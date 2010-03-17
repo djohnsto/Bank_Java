@@ -1,18 +1,5 @@
 package com.thoughtworks.bank;
 
-import org.junit.Assert;
-import org.junit.Test;
-import src.com.thoughtworks.RepositoryInMemory.AccountRepositoryInMemory;
-import src.com.thoughtworks.RepositoryInMemory.AuditLogRepositoryInMemory;
-import src.com.thoughtworks.RepositoryInMemory.CustomerRepositoryInMemory;
-import src.com.thoughtworks.bank.Account;
-import src.com.thoughtworks.bank.Audit;
-import src.com.thoughtworks.bank.Customer;
-import src.com.thoughtworks.bankcontroller.BankAccountController;
-
-import java.math.BigDecimal;
-import java.util.List;
-
 /**
  * Created by IntelliJ IDEA.
  * User: ThoughtWorks
@@ -20,7 +7,7 @@ import java.util.List;
  * Time: 1:24:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BankControllerTests {
+/*public class BankControllerTests {
     private BankAccountController bankAccountController;
 
     @Test
@@ -30,7 +17,7 @@ public class BankControllerTests {
     }
 
     @Test
-    public void CreateAccountResultsInHavingANewCustomer()
+    public void CreateAccountResultsInHavingANewCustomer() throws Exception
     {
         bankAccountController = new BankAccountController();
         bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
@@ -101,3 +88,4 @@ public class BankControllerTests {
         Assert.assertEquals(2, auditLog.size());
     }
 }
+*/

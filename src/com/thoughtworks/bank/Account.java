@@ -13,23 +13,8 @@ import java.util.List;
 
 public class Account {
         public Customer holder;
-        //public event Action<decimal, Customer> LargeWithdrawAlert;
         public int id;
         public BigDecimal Balance;
-
-       /*public Account(Customer customer)
-        {
-            holder = customer;
-            id = CustomerNumberProvisioningService.NewCustomerNumber(); ;
-            BigDecimal Balance = new BigDecimal(0);
-        }
-
-        public Account(Customer customer, int Id)
-        {
-            holder = customer;
-            id = Id;
-            BigDecimal Balance = new BigDecimal(0);
-        }  */
 
         public Account(Customer customer, int Id, BigDecimal balance)
         {
