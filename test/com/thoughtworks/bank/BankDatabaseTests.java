@@ -11,16 +11,9 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 17, 2010
- * Time: 9:47:26 AM
- * To change this template use File | Settings | File Templates.
- */
 public class BankDatabaseTests {
         private Connection connection;
         private Statement statement;
@@ -30,10 +23,15 @@ public class BankDatabaseTests {
         public void setUp() throws Exception{
             Class.forName("org.hsqldb.jdbcDriver");
             Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "SA", "");
-            Statement statement= connection.createStatement();
-            //statement.executeQuery("CREATE TABLE Customer (_id INT IDENTITY, _ficoScore INT, _lastName VARCHAR(255), _firstName VARCHAR(255));");
-            //statement.executeQuery("CREATE TABLE Accounts (_id INT IDENTITY, _customerId INT, _balance DECIMAL);");
-            //statement.executeQuery("CREATE TABLE AuditLog (_accountId INT, _amount DECIMAL, _timeStamp TIMESTAMP);");
+            Statement statement= connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            try{
+                statement.executeQuery("SELECT * FROM Accounts");
+            }
+            catch (Exception exception) {
+                statement.executeQuery("CREATE TABLE Customer (_id INT IDENTITY, _ficoScore INT, _lastName VARCHAR(255), _firstName VARCHAR(255));");
+                statement.executeQuery("CREATE TABLE Accounts (_id INT IDENTITY, _customerId INT, _balance DECIMAL);");
+                statement.executeQuery("CREATE TABLE AuditLog (_accountId INT, _amount DECIMAL, _timeStamp TIMESTAMP);");
+            }
             statement.close();
             connection.close();
         }

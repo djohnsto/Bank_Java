@@ -7,15 +7,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 16, 2010
- * Time: 2:02:36 PM
- * To change this template use File | Settings | File Templates.
- */
 public class AccountRepositoryInMemory {
-    public List<Account> _accounts = new ArrayList();
+    public List<Account> _accounts = new ArrayList<Account>();
 
 
         public Account GetAccountByCustomer(Customer customer) throws Exception
@@ -39,7 +32,5 @@ public class AccountRepositoryInMemory {
         {
             return _accounts;
         }
-        public void UpdateAccountBalance(Account account){
-            return;
-        }
+        public void UpdateAccountBalance(Account account){}
 }

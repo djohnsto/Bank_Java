@@ -11,15 +11,6 @@ import com.thoughtworks.bank.Customer;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 16, 2010
- * Time: 1:28:19 PM
- * To change this template use File | Settings | File Templates.
- */
 public class BankAccountController {
 
     public CustomerRepositoryInDatabase CustomerRepository;
@@ -40,7 +31,6 @@ public class BankAccountController {
 
     public void Deposit(int id, BigDecimal amount) throws Exception
     {
-        Bank bank = new Bank("BankName", 720);
         Customer customer = CustomerRepository.GetCustomerById(id);
         Account account = AccountRepository.GetAccountByCustomer(customer);
         account.Deposit(amount);
@@ -49,8 +39,7 @@ public class BankAccountController {
 
     public void Withdraw(int id, BigDecimal amount) throws Exception
     {
-        Bank bank = new Bank("BankName", 720);
-        List<Audit> auditLog = new ArrayList();
+        List<Audit> auditLog = new ArrayList<Audit>();
         Customer customer = CustomerRepository.GetCustomerById(id);
         Account account = AccountRepository.GetAccountByCustomer(customer);
         account.Withdraw(amount, auditLog);

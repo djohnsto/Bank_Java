@@ -2,15 +2,6 @@ package com.thoughtworks.bank;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 15, 2010
- * Time: 4:47:56 PM
- * To change this template use File | Settings | File Templates.
- */
-
 public class Account {
         public Customer holder;
         public int id;

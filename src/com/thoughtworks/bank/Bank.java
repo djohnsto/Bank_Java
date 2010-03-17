@@ -3,15 +3,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 15, 2010
- * Time: 5:18:52 PM
- * To change this template use File | Settings | File Templates.
- */
-
 public class Bank {
         public String bankName;
         public int minimumCreditScore;

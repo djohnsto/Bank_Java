@@ -3,16 +3,8 @@ package com.thoughtworks.RepositoryInMemory;
 import com.thoughtworks.bank.Customer;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 16, 2010
- * Time: 2:02:01 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CustomerRepositoryInMemory {
-    public List<Customer> _customers = new ArrayList();
+    public List<Customer> _customers = new ArrayList<Customer>();
 
         public Customer GetCustomerById(int id) throws Exception
         {

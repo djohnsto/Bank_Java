@@ -10,14 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 17, 2010
- * Time: 9:52:25 AM
- * To change this template use File | Settings | File Templates.
- */
 public class AccountRepositoryInDatabase {
     public Account GetAccountByCustomer(Customer customer) throws Exception
         {
@@ -65,7 +57,7 @@ public class AccountRepositoryInDatabase {
             Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "SA", "");
             Statement statement= connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Accounts");
-            List<Account> accounts = new ArrayList();
+            List<Account> accounts = new ArrayList<Account>();
 
 
             for (int i = 1; resultSet.absolute(i); i++)
