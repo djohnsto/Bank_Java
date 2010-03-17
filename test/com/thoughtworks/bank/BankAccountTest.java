@@ -1,13 +1,9 @@
 package com.thoughtworks.bank;
 
+import com.thoughtworks.bank.Account.AccountOverdrawnException;
+import com.thoughtworks.bank.Bank.BadCreditException;
 import org.junit.Assert;
 import org.junit.Test;
-import src.com.thoughtworks.bank.Account;
-import src.com.thoughtworks.bank.Account.AccountOverdrawnException;
-import src.com.thoughtworks.bank.Audit;
-import src.com.thoughtworks.bank.Bank;
-import src.com.thoughtworks.bank.Bank.BadCreditException;
-import src.com.thoughtworks.bank.Customer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

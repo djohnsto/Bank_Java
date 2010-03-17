@@ -1,6 +1,6 @@
-package src.com.thoughtworks.RepositoryInMemory;
+package com.thoughtworks.RepositoryInMemory;
 
-import src.com.thoughtworks.bank.Audit;
+import com.thoughtworks.bank.Audit;
 
 import java.util.ArrayList;
 import java.util.List;

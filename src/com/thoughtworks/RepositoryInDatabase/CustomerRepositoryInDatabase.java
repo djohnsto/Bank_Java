@@ -1,6 +1,6 @@
-package src.com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.RepositoryInDatabase;
 
-import src.com.thoughtworks.bank.Customer;
+import com.thoughtworks.bank.Customer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

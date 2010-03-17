@@ -1,7 +1,7 @@
-package src.com.thoughtworks.RepositoryInMemory;
+package com.thoughtworks.RepositoryInMemory;
 
-import src.com.thoughtworks.bank.Account;
-import src.com.thoughtworks.bank.Customer;
+import com.thoughtworks.bank.Account;
+import com.thoughtworks.bank.Customer;
 import java.util.Random;
 import java.math.BigDecimal;
 import java.util.ArrayList;

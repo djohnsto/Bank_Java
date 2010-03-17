@@ -1,6 +1,6 @@
-package src.com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.RepositoryInDatabase;
 
-import src.com.thoughtworks.bank.Audit;
+import com.thoughtworks.bank.Audit;
 
 import java.math.BigDecimal;
 import java.sql.*;

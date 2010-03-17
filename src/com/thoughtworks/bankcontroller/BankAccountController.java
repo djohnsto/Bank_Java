@@ -1,12 +1,12 @@
-package src.com.thoughtworks.bankcontroller;
+package com.thoughtworks.bankcontroller;
 
-import src.com.thoughtworks.RepositoryInDatabase.AccountRepositoryInDatabase;
-import src.com.thoughtworks.RepositoryInDatabase.AuditLogRepositoryInDatabase;
-import src.com.thoughtworks.RepositoryInDatabase.CustomerRepositoryInDatabase;
-import src.com.thoughtworks.bank.Account;
-import src.com.thoughtworks.bank.Audit;
-import src.com.thoughtworks.bank.Bank;
-import src.com.thoughtworks.bank.Customer;
+import com.thoughtworks.RepositoryInDatabase.AccountRepositoryInDatabase;
+import com.thoughtworks.RepositoryInDatabase.AuditLogRepositoryInDatabase;
+import com.thoughtworks.RepositoryInDatabase.CustomerRepositoryInDatabase;
+import com.thoughtworks.bank.Account;
+import com.thoughtworks.bank.Audit;
+import com.thoughtworks.bank.Bank;
+import com.thoughtworks.bank.Customer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

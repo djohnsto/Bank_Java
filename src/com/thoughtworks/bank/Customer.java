@@ -1,4 +1,4 @@
-package src.com.thoughtworks.bank;
+package com.thoughtworks.bank;
 
 /**
  * Created by IntelliJ IDEA.

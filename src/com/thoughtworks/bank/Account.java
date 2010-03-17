@@ -1,4 +1,4 @@
-package src.com.thoughtworks.bank;
+package com.thoughtworks.bank;
 
 import java.math.BigDecimal;
 import java.util.List;

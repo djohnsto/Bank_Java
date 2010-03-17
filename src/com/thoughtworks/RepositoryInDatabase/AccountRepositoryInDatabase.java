@@ -1,7 +1,7 @@
-package src.com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.RepositoryInDatabase;
 
-import src.com.thoughtworks.bank.Account;
-import src.com.thoughtworks.bank.Customer;
+import com.thoughtworks.bank.Account;
+import com.thoughtworks.bank.Customer;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
