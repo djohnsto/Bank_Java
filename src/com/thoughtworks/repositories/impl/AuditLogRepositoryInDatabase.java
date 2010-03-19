@@ -1,13 +1,14 @@
-package com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.repositories.impl;
 
 import com.thoughtworks.bank.Audit;
+import com.thoughtworks.repositories.AuditLogRepository;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-public class AuditLogRepositoryInDatabase {
+public class AuditLogRepositoryInDatabase implements AuditLogRepository {
     public void WriteEntries(List<Audit> auditLogToSave) throws Exception
     {
         Class.forName("org.hsqldb.jdbcDriver");

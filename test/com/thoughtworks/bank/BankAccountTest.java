@@ -88,9 +88,9 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            List<Audit> auditlog = new ArrayList();
+            List<Audit> auditLog = new ArrayList<Audit>();
             account.Deposit(new BigDecimal(50));
-            account.Withdraw(new BigDecimal(10), auditlog);
+            account.Withdraw(new BigDecimal(10), auditLog);
             Assert.assertEquals(new BigDecimal(40), account.Balance);
         }
 
@@ -100,9 +100,9 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            List<Audit> auditlog = new ArrayList();
+            List<Audit> auditLog = new ArrayList<Audit>();
             try{
-                account.Withdraw(new BigDecimal(10), auditlog);
+                account.Withdraw(new BigDecimal(10), auditLog);
                 Assert.fail("Should have Account Overdrawn Exception");
             }
             catch(AccountOverdrawnException expected){}
@@ -114,10 +114,10 @@ public class BankAccountTest {
             Customer customer = new Customer(1, "Milton", "Waddams", 720);
             Bank bank = new Bank("Initech Bank", 680);
             Account account = bank.OpenAccount(customer);
-            List<Audit> auditlog = new ArrayList();
+            List<Audit> auditLog = new ArrayList<Audit>();
             account.Deposit(new BigDecimal(10000));
-            account.Withdraw(new BigDecimal(10000), auditlog);
-            Assert.assertEquals(1, auditlog.size());
+            account.Withdraw(new BigDecimal(10000), auditLog);
+            Assert.assertEquals(1, auditLog.size());
 
         } 
 }

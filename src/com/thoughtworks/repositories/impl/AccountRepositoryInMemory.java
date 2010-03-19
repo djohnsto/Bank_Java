@@ -1,21 +1,23 @@
-package com.thoughtworks.RepositoryInMemory;
+package com.thoughtworks.repositories.impl;
 
 import com.thoughtworks.bank.Account;
 import com.thoughtworks.bank.Customer;
-import java.util.Random;
+import com.thoughtworks.repositories.AccountRepository;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class AccountRepositoryInMemory {
-    public List<Account> _accounts = new ArrayList<Account>();
+public class AccountRepositoryInMemory implements AccountRepository {
+    private List<Account> _accounts = new ArrayList<Account>();
 
 
         public Account GetAccountByCustomer(Customer customer) throws Exception
         {
-            for(int i=0; i<_accounts.size(); i++){
-                if(customer==_accounts.get(i).holder){
-                    return _accounts.get(i);
+            for (Account _account : _accounts) {
+                if (customer == _account.holder) {
+                    return _account;
                 }
             }
             throw new Exception();

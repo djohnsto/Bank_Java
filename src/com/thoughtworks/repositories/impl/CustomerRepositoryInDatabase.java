@@ -1,6 +1,7 @@
-package com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.repositories.impl;
 
 import com.thoughtworks.bank.Customer;
+import com.thoughtworks.repositories.CustomerRepository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerRepositoryInDatabase {
-        public static Customer GetCustomerById(int id) throws Exception
+public class CustomerRepositoryInDatabase implements CustomerRepository {
+        public Customer GetCustomerById(int id) throws Exception
         {
             Class.forName("org.hsqldb.jdbcDriver");
             Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "SA", "");
@@ -37,8 +38,7 @@ public class CustomerRepositoryInDatabase {
             int id = resultSet.getInt("_id");
             statement.close();
             connection.close();
-            Customer customer = new Customer(id, firstName, lastName, ficoScore);
-            return customer;
+            return new Customer(id, firstName, lastName, ficoScore);
         }
 
         public List<Customer> GetAll() throws Exception

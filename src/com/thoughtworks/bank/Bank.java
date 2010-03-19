@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Bank {
-        public String bankName;
-        public int minimumCreditScore;
-        public List accounts = new ArrayList();
+        String bankName;
+        int minimumCreditScore;
+        List<Account> accounts = new ArrayList<Account>();
 
         public Bank(String BankName, int MinimumCreditScore)
         {

@@ -20,7 +20,7 @@ public class Account {
             Balance=Balance.add(amount);
         }
 
-        public void Withdraw(BigDecimal amount, List<Audit> auditlog) throws AccountOverdrawnException
+        public void Withdraw(BigDecimal amount, List<Audit> auditLog) throws AccountOverdrawnException
         {
             Balance=Balance.subtract(amount);
             if(Balance.intValue() < 0)
@@ -31,7 +31,7 @@ public class Account {
             if(amount.intValue()>=10000)
             {
                 Audit audit = new Audit(id, amount);
-                auditlog.add(audit);
+                auditLog.add(audit);
             }
         }
         public class AccountOverdrawnException extends Exception{}

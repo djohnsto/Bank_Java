@@ -1,8 +1,8 @@
-package com.thoughtworks.bankcontroller;
+package com.thoughtworks.controllers;
 
-import com.thoughtworks.RepositoryInDatabase.AccountRepositoryInDatabase;
-import com.thoughtworks.RepositoryInDatabase.AuditLogRepositoryInDatabase;
-import com.thoughtworks.RepositoryInDatabase.CustomerRepositoryInDatabase;
+import com.thoughtworks.repositories.AccountRepository;
+import com.thoughtworks.repositories.AuditLogRepository;
+import com.thoughtworks.repositories.CustomerRepository;
 import com.thoughtworks.bank.Account;
 import com.thoughtworks.bank.Audit;
 import com.thoughtworks.bank.Bank;
@@ -13,9 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 public class BankAccountController {
 
-    public CustomerRepositoryInDatabase CustomerRepository;
-    public AccountRepositoryInDatabase AccountRepository;
-    public AuditLogRepositoryInDatabase AuditLogRepository;
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        CustomerRepository = customerRepository;
+    }
+    public void setAccountRepository(AccountRepository accountRepository) {
+        AccountRepository = accountRepository;
+    }
+    public void setAuditLogRepository(AuditLogRepository auditLogRepository) {
+        AuditLogRepository = auditLogRepository;
+    }
+
+    public CustomerRepository CustomerRepository;
+    public AccountRepository AccountRepository;
+    public AuditLogRepository AuditLogRepository;
 
     public void Create(String firstName, String lastName, int ficoScore) throws Exception
     {

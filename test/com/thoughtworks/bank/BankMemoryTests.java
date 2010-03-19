@@ -1,28 +1,30 @@
 package com.thoughtworks.bank;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Mar 16, 2010
- * Time: 1:24:36 PM
- * To change this template use File | Settings | File Templates.
- */
-/*public class BankControllerTests {
+import com.thoughtworks.controllers.BankAccountController;
+import com.thoughtworks.repositories.impl.AccountRepositoryInMemory;
+import com.thoughtworks.repositories.impl.AuditLogRepositoryInMemory;
+import com.thoughtworks.repositories.impl.CustomerRepositoryInMemory;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+public class BankMemoryTests {
     private BankAccountController bankAccountController;
 
-    @Test
-    public void CanCreateBankAccountController()
-    {
-        BankAccountController bankAccountController = new BankAccountController();
-    }
+    @Before
+        public void setUp() throws Exception{
+            bankAccountController = new BankAccountController();
+            bankAccountController.setCustomerRepository(new CustomerRepositoryInMemory());
+            bankAccountController.setAccountRepository(new AccountRepositoryInMemory());
+            bankAccountController.setAuditLogRepository(new AuditLogRepositoryInMemory());
+        }
 
     @Test
     public void CreateAccountResultsInHavingANewCustomer() throws Exception
     {
-        bankAccountController = new BankAccountController();
-        bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
-        bankAccountController.AccountRepository = new AccountRepositoryInMemory();
-        bankAccountController.AuditLogRepository = new AuditLogRepositoryInMemory();
         bankAccountController.Create("Joe", "Blow", 800);
         Customer firstCustomer = bankAccountController.CustomerRepository.GetAll().get(bankAccountController.CustomerRepository.GetAll().size()-1);
         Assert.assertEquals("Joe", firstCustomer.firstName);
@@ -30,12 +32,8 @@ package com.thoughtworks.bank;
     }
 
     @Test
-    public void CreateAccountResultsInHavingANewAccount()
+    public void CreateAccountResultsInHavingANewAccount() throws Exception
     {
-        BankAccountController bankAccountController = new BankAccountController();
-        bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
-        bankAccountController.AccountRepository = new AccountRepositoryInMemory();
-        bankAccountController.AuditLogRepository = new AuditLogRepositoryInMemory();
         bankAccountController.Create("Joe", "Blow", 800);
         Account firstAccount = bankAccountController.AccountRepository.GetAll().get(bankAccountController.AccountRepository.GetAll().size()-1);
         Assert.assertEquals("Joe", firstAccount.holder.firstName);
@@ -45,10 +43,6 @@ package com.thoughtworks.bank;
     @Test
     public void DepositResultsInHavingMoney() throws Exception
     {
-        BankAccountController bankAccountController = new BankAccountController();
-        bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
-        bankAccountController.AccountRepository = new AccountRepositoryInMemory();
-        bankAccountController.AuditLogRepository = new AuditLogRepositoryInMemory();
         bankAccountController.Create("Joe", "Blow", 800);
         Customer firstCustomer = bankAccountController.CustomerRepository.GetAll().get(bankAccountController.CustomerRepository.GetAll().size()-1);
         bankAccountController.Deposit(firstCustomer.id, new BigDecimal(500));
@@ -60,10 +54,6 @@ package com.thoughtworks.bank;
     @Test
     public void WithdrawResultsInLosingMoney() throws Exception
     {
-        BankAccountController bankAccountController = new BankAccountController();
-        bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
-        bankAccountController.AccountRepository = new AccountRepositoryInMemory();
-        bankAccountController.AuditLogRepository = new AuditLogRepositoryInMemory();
         bankAccountController.Create("Joe", "Blow", 800);
         Customer firstCustomer = bankAccountController.CustomerRepository.GetAll().get(bankAccountController.CustomerRepository.GetAll().size()-1);
         bankAccountController.Deposit(firstCustomer.id, new BigDecimal(500));
@@ -75,10 +65,6 @@ package com.thoughtworks.bank;
     @Test
     public void LargeWithdrawResultsInAudit() throws Exception
     {
-        BankAccountController bankAccountController = new BankAccountController();
-        bankAccountController.CustomerRepository = new CustomerRepositoryInMemory();
-        bankAccountController.AccountRepository = new AccountRepositoryInMemory();
-        bankAccountController.AuditLogRepository = new AuditLogRepositoryInMemory();
         bankAccountController.Create("Joe", "Blow", 800);
         Customer firstCustomer = bankAccountController.CustomerRepository.GetAll().get(bankAccountController.CustomerRepository.GetAll().size()-1);
         bankAccountController.Deposit(firstCustomer.id, new BigDecimal(30000));
@@ -88,4 +74,3 @@ package com.thoughtworks.bank;
         Assert.assertEquals(2, auditLog.size());
     }
 }
-*/

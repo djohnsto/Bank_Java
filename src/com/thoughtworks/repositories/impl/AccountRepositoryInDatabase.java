@@ -1,7 +1,8 @@
-package com.thoughtworks.RepositoryInDatabase;
+package com.thoughtworks.repositories.impl;
 
 import com.thoughtworks.bank.Account;
 import com.thoughtworks.bank.Customer;
+import com.thoughtworks.repositories.AccountRepository;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-public class AccountRepositoryInDatabase {
+public class AccountRepositoryInDatabase implements AccountRepository {
     public Account GetAccountByCustomer(Customer customer) throws Exception
         {
             Class.forName("org.hsqldb.jdbcDriver");
@@ -22,8 +23,7 @@ public class AccountRepositoryInDatabase {
             BigDecimal balance = resultSet.getBigDecimal("_balance");
             statement.close();
             connection.close();
-            Account account = new Account(customer, id, balance);
-            return account;
+            return new Account(customer, id, balance);
         }
 
         public void UpdateAccountBalance(Account account) throws Exception
@@ -47,8 +47,7 @@ public class AccountRepositoryInDatabase {
             int id = resultSet.getInt("_id");
             statement.close();
             connection.close();
-            Account account = new Account(customer, id, new BigDecimal(0));
-            return account;
+            return new Account(customer, id, new BigDecimal(0));
         }
 
         public List<Account> GetAll() throws Exception
@@ -58,14 +57,13 @@ public class AccountRepositoryInDatabase {
             Statement statement= connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Accounts");
             List<Account> accounts = new ArrayList<Account>();
-
-
             for (int i = 1; resultSet.absolute(i); i++)
             {
                 int customerId = resultSet.getInt("_customerId");
                 BigDecimal balance = resultSet.getBigDecimal("_balance");
                 int id = resultSet.getInt("_id");
-                Customer customer = CustomerRepositoryInDatabase.GetCustomerById(customerId);
+                CustomerRepositoryInDatabase temp = new CustomerRepositoryInDatabase();
+                Customer customer = temp.GetCustomerById(customerId);
                 Account account = new Account(customer, id, balance);
                 accounts.add(account);
             }

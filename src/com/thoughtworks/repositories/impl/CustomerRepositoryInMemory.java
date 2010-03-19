@@ -1,16 +1,19 @@
-package com.thoughtworks.RepositoryInMemory;
+package com.thoughtworks.repositories.impl;
 
 import com.thoughtworks.bank.Customer;
+import com.thoughtworks.repositories.CustomerRepository;
+
 import java.util.ArrayList;
 import java.util.List;
-public class CustomerRepositoryInMemory {
-    public List<Customer> _customers = new ArrayList<Customer>();
+
+public class CustomerRepositoryInMemory implements CustomerRepository {
+    private List<Customer> _customers = new ArrayList<Customer>();
 
         public Customer GetCustomerById(int id) throws Exception
         {
-            for(int i=0; i<_customers.size(); i++){
-                if(id==_customers.get(i).id){
-                    return _customers.get(i);
+            for (Customer _customer : _customers) {
+                if (id == _customer.id) {
+                    return _customer;
                 }
             }
             throw new Exception();
